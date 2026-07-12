@@ -25,7 +25,6 @@
             padding: 25px 30px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
-        /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -112,7 +111,6 @@
             font-size: 13px;
             font-weight: 700;
         }
-        /* ===== CATEGORIES ===== */
         .categories {
             display: flex;
             flex-wrap: wrap;
@@ -137,7 +135,6 @@
             background: #fdcb6e;
             color: #2d3436;
         }
-        /* ===== PRODUCT GRID ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -209,7 +206,6 @@
             font-size: 13px;
             padding: 6px 10px;
         }
-        /* ===== ADMIN PANEL ===== */
         .admin-panel {
             margin-top: 40px;
             border-top: 3px dashed #dfe6e9;
@@ -316,7 +312,6 @@
             padding: 4px 14px;
             font-size: 12px;
         }
-        /* ===== CART SIDEBAR ===== */
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -396,7 +391,6 @@
             justify-content: center;
             padding: 12px;
         }
-        /* ===== OVERLAY ===== */
         .overlay {
             position: fixed;
             top: 0;
@@ -410,7 +404,6 @@
         .overlay.open {
             display: block;
         }
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 700px) {
             .container {
                 padding: 15px;
@@ -444,10 +437,10 @@
 </head>
 <body>
 
-    <!-- ===== OVERLAY ===== -->
+    <!-- OVERLAY -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- ===== CART SIDEBAR ===== -->
+    <!-- CART SIDEBAR -->
     <div class="cart-sidebar" id="cartSidebar">
         <button class="close-cart" id="closeCart">✕</button>
         <h2>🛍️ سلة التسوق</h2>
@@ -459,10 +452,9 @@
         </div>
     </div>
 
-    <!-- ===== MAIN CONTAINER ===== -->
+    <!-- MAIN CONTAINER -->
     <div class="container" id="app">
 
-        <!-- HEADER -->
         <header class="header">
             <div class="logo">🛒 <span>متجري</span></div>
             <div class="header-actions">
@@ -480,7 +472,7 @@
         <!-- PRODUCTS GRID -->
         <div class="products-grid" id="productsGrid"></div>
 
-        <!-- ===== ADMIN PANEL ===== -->
+        <!-- ADMIN PANEL -->
         <div class="admin-panel" id="adminPanel">
             <div class="admin-toggle">
                 <h2>🔐 لوحة التحكم (المدير)</h2>
@@ -491,7 +483,7 @@
 
             <div class="admin-content" id="adminContent">
                 <!-- نموذج إضافة / تعديل -->
-                <div class="admin-form" id="productForm">
+                <div class="admin-form" id="productForm" style="display:grid;">
                     <div class="full-width">
                         <h3 id="formTitle">➕ إضافة منتج جديد</h3>
                     </div>
@@ -549,7 +541,7 @@
                         <tbody id="adminTableBody"></tbody>
                     </table>
                 </div>
-                <p style="margin-top:12px; color:#636e72; font-size:13px;">* كلمة المرور: <strong>abood92-2</strong> (للدخول للوحة التحكم)</p>
+                <p style="margin-top:12px; color:#636e72; font-size:13px;">* كلمة المرور: <strong>abood</strong></p>
             </div>
         </div>
     </div>
@@ -559,28 +551,11 @@
         //  كل البيانات مخزنة في localStorage
         // ============================================================
         const STORAGE_KEY = 'my_store_data';
-        const ADMIN_PASSWORD = 'abood92-2';
+        const ADMIN_PASSWORD = 'abood';  // ✅ تم التغيير إلى abood
 
-        // ----- البيانات الافتراضية -----
+        // ----- البيانات الافتراضية (فارغة تماماً) -----
         function getDefaultProducts() {
-            return [
-                { id: 1, name: 'هاتف ذكي X', category: 'إلكترونيات', price: 1500, stock: 10,
-                    desc: 'شاشة 6.7 بوصة، كاميرا 108 ميجا، بطارية 5000 مللي', image: 'https://picsum.photos/seed/phone/300/200' },
-                { id: 2, name: 'سماعة لاسلكية Pro', category: 'إلكترونيات', price: 200, stock: 25,
-                    desc: 'عزل ضوضاء، بطارية 12 ساعة، بلوتوث 5.2', image: 'https://picsum.photos/seed/headphone/300/200' },
-                { id: 3, name: 'ساعة ذكية Sport', category: 'إلكترونيات', price: 800, stock: 5,
-                    desc: 'شاشة أموليد، تتبع اللياقة، مقاومة للماء', image: 'https://picsum.photos/seed/watch/300/200' },
-                { id: 4, name: 'تيشيرت قطني', category: 'ملابس', price: 45, stock: 30,
-                    desc: 'قطن 100%، متوفر بجميع المقاسات', image: 'https://picsum.photos/seed/tshirt/300/200' },
-                { id: 5, name: 'كتاب تطوير الذات', category: 'كتب', price: 65, stock: 12,
-                    desc: 'أكثر الكتب مبيعاً في التنمية البشرية', image: 'https://picsum.photos/seed/book/300/200' },
-                { id: 6, name: 'لعبة بلاي ستيشن 5', category: 'ألعاب', price: 220, stock: 8,
-                    desc: 'قرص ألعاب، إصدار محدود', image: 'https://picsum.photos/seed/ps5/300/200' },
-                { id: 7, name: 'خلاط كهربائي', category: 'أجهزة منزلية', price: 150, stock: 6,
-                    desc: '3 سرعات، وعاء زجاجي، 1000 واط', image: 'https://picsum.photos/seed/blender/300/200' },
-                { id: 8, name: 'حقيبة ظهر', category: 'ملابس', price: 120, stock: 15,
-                    desc: 'مقاومة للماء، 25 لتر، تصميم عصري', image: 'https://picsum.photos/seed/backpack/300/200' },
-            ];
+            return [];  // ✅ لا توجد منتجات وهمية
         }
 
         // ----- قراءة وكتابة البيانات -----
@@ -612,7 +587,6 @@
         //  دوال العرض
         // ============================================================
 
-        // عرض المنتجات في الواجهة الأمامية
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             let filtered = products;
@@ -630,7 +604,7 @@
             }
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px; color:#636e72;">لا توجد منتجات مطابقة</p>`;
+                grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px; color:#636e72;">لا توجد منتجات حالياً</p>`;
                 return;
             }
 
@@ -647,7 +621,6 @@
                 </div>
             `).join('');
 
-            // ربط أزرار الإضافة
             document.querySelectorAll('.add-to-cart').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.dataset.id);
@@ -656,7 +629,6 @@
             });
         }
 
-        // عرض الأقسام
         function renderCategories() {
             const container = document.getElementById('categoriesContainer');
             const cats = ['الكل', ...new Set(products.map(p => p.category))];
@@ -676,7 +648,6 @@
             });
         }
 
-        // عرض لوحة التحكم (الجدول)
         function renderAdminTable() {
             const tbody = document.getElementById('adminTableBody');
             if (products.length === 0) {
@@ -697,7 +668,6 @@
                 </tr>
             `).join('');
 
-            // ربط أزرار التعديل والحذف
             tbody.querySelectorAll('.edit-product').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.dataset.id);
@@ -714,7 +684,6 @@
             });
         }
 
-        // عرض السلة
         function renderCart() {
             const container = document.getElementById('cartItems');
             const totalSpan = document.getElementById('cartTotal');
@@ -755,7 +724,6 @@
             totalSpan.textContent = `المجموع: ${total} ريال`;
             countSpan.textContent = ids.reduce((sum, id) => sum + cart[id], 0);
 
-            // ربط أحداث السلة
             document.querySelectorAll('.cart-inc').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.dataset.id);
@@ -787,7 +755,7 @@
         }
 
         // ============================================================
-        //  دوال البيانات (إضافة، تعديل، حذف)
+        //  دوال البيانات
         // ============================================================
 
         function addProduct(name, category, price, stock, desc, image) {
@@ -809,7 +777,6 @@
 
         function deleteProduct(id) {
             products = products.filter(p => p.id !== id);
-            // حذف من السلة أيضاً
             if (cart[id]) delete cart[id];
             saveData(products);
             saveCart();
@@ -829,7 +796,6 @@
             document.getElementById('pImage').value = prod.image || '';
             document.getElementById('editId').value = id;
             document.getElementById('saveProductBtn').textContent = '💾 تحديث';
-            // فتح نموذج الإضافة إذا كان مغلقاً
             document.getElementById('productForm').style.display = 'grid';
             document.getElementById('productForm').scrollIntoView({ behavior: 'smooth' });
         }
@@ -842,7 +808,6 @@
             cart[id] = (cart[id] || 0) + 1;
             saveCart();
             renderCart();
-            // تأثير بسيط
             const btn = document.querySelector(`.add-to-cart[data-id="${id}"]`);
             if (btn) {
                 btn.textContent = '✅ تمت الإضافة';
@@ -874,7 +839,6 @@
             renderCart();
         }
 
-        // فتح/إغلاق لوحة التحكم (بكلمة مرور)
         function toggleAdmin() {
             if (adminOpen) {
                 adminOpen = false;
@@ -893,7 +857,6 @@
             }
         }
 
-        // إعادة تعيين النموذج
         function resetForm() {
             document.getElementById('formTitle').textContent = '➕ إضافة منتج جديد';
             document.getElementById('pName').value = '';
@@ -907,10 +870,6 @@
             editingId = null;
             document.getElementById('productForm').style.display = 'grid';
         }
-
-        // ============================================================
-        //  أحداث السلة (فتح/غلق)
-        // ============================================================
 
         function openCart() {
             document.getElementById('cartSidebar').classList.add('open');
@@ -930,21 +889,17 @@
             loadCart();
             renderAll();
 
-            // -- بحث --
             document.getElementById('searchInput').addEventListener('input', function() {
                 searchTerm = this.value;
                 renderProducts();
             });
 
-            // -- زر فتح السلة --
             document.getElementById('openCartBtn').addEventListener('click', openCart);
             document.getElementById('closeCart').addEventListener('click', closeCart);
             document.getElementById('overlay').addEventListener('click', closeCart);
 
-            // -- زر لوحة التحكم --
             document.getElementById('adminToggleBtn').addEventListener('click', toggleAdmin);
 
-            // -- زر إظهار نموذج الإضافة --
             document.getElementById('showAddFormBtn').addEventListener('click', function() {
                 if (!adminOpen) {
                     alert('🔑 يجب فتح لوحة التحكم أولاً');
@@ -954,7 +909,6 @@
                 document.getElementById('productForm').scrollIntoView({ behavior: 'smooth' });
             });
 
-            // -- حفظ المنتج (إضافة أو تعديل) --
             document.getElementById('saveProductBtn').addEventListener('click', function() {
                 const name = document.getElementById('pName').value.trim();
                 const category = document.getElementById('pCategory').value;
@@ -968,15 +922,12 @@
                 if (isNaN(price) || price < 0) { alert('❌ السعر غير صحيح'); return; }
 
                 if (editId) {
-                    // تعديل
                     updateProduct(parseInt(editId), name, category, price, stock, desc, image);
                 } else {
-                    // إضافة
                     addProduct(name, category, price, stock, desc, image);
                 }
                 resetForm();
                 if (!adminOpen) {
-                    // إذا كانت اللوحة مغلقة، نفتحها
                     adminOpen = true;
                     document.getElementById('adminContent').classList.add('open');
                     document.getElementById('adminToggleBtn').textContent = '🔒 إغلاق لوحة التحكم';
@@ -986,10 +937,8 @@
                 renderCategories();
             });
 
-            // -- إلغاء النموذج --
             document.getElementById('cancelFormBtn').addEventListener('click', resetForm);
 
-            // -- إفراغ السلة --
             document.getElementById('clearCart').addEventListener('click', function() {
                 if (confirm('هل تريد إفراغ السلة؟')) {
                     cart = {};
@@ -998,7 +947,6 @@
                 }
             });
 
-            // -- إتمام الشراء --
             document.getElementById('checkoutBtn').addEventListener('click', function() {
                 const ids = Object.keys(cart);
                 if (ids.length === 0) {
@@ -1010,7 +958,6 @@
                     return sum + (p ? p.price * cart[id] : 0);
                 }, 0);
                 if (confirm(`✅ إتمام الشراء؟\nالمجموع: ${total} ريال`)) {
-                    // خصم المخزون
                     ids.forEach(id => {
                         const p = products.find(pr => pr.id === parseInt(id));
                         if (p) {
@@ -1027,10 +974,9 @@
             });
 
             console.log('🛒 متجرك الإلكتروني جاهز!');
-            console.log('🔑 كلمة المرور: abood92-2');
+            console.log('🔑 كلمة المرور: abood');
         }
 
-        // بدء التشغيل
         document.addEventListener('DOMContentLoaded', init);
     </script>
 
